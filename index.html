@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript">
+      $(document).ready(function() {
+      $.getJSON("https://api.indiegogo.com/1/campaigns/790357.json?api_token=e88bd0a00305bfdfb18003a75665643b", function(data) {
+      $("#igg-funds").append('<h2>$'
+        + numberWithCommas(data.response.collected_funds)
+        + ' out of $'
+        + numberWithCommas(data.response.goal)
+        + " raised so far ..."
+        + '</h2>');
+
+      $("#igg-funds").append('<p>'
+        + "Thanks to "
+        + numberWithCommas(data.response.contributions_count)
+        + " People!"
+        + '</p>');
+
+      $("#donateButton").append('<h2>'
+        + " Click Here to donate"
+        + '</h2>');
+      });
+      });
+
+      function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+    </script>
+  </head>
+
+  <body>
+
+    <div class="igg-wrapper">
+      <div id="igg-funds">
+        <h1> Please consider donating so the ALODF. We have helped over 50 donors make over 70 transplants possible.</h1>
+      </div>
+      <div id="donateButton">
+      </div>
+    </div>
+
+  </body>
+</html>

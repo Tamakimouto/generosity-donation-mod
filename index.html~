@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript">
+      $(document).ready(function() {
+      $.getJSON("https://api.indiegogo.com/1/campaigns/[YOUR CAMPAIGN ID].json?api_token=[YOUR API TOKEN]", function(gogodata) {
+      $("#igg-funds").prepend('<h2>$'
+        + numberWithCommas(gogodata.response.collected_funds)
+        + '<br> out of <br>$'
+        + numberWithCommas(gogodata.response.goal)
+        + '</h2>');
+      $("#igg-contributions").prepend('<h2>' + numberWithCommas(gogodata.response.contributions_count) + '</h2>');
+      });
+      });
+
+      function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+      </script>
+  </head>
+  <body>
+
+    <div class="igg-wrapper">
+
+      <div class="igg-boxes" id="igg-funds">
+        <h3>Raised so far</h3>
+      </div>
+
+      <div class="igg-boxes" id="igg-contributions">
+        <h3>People have contributed</h3>
+      </div>
+
+    </div>
+
+  </body>
+</html>
